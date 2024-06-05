@@ -60,21 +60,21 @@ namespace ContainerShipV2
 
         public string Run()
         {
-            TotalSlots = Length * Width;
+            TotalSlots = Length * Width * 29;
 
             if (MaxWeight < TotalWeight)
             {
-                return "Ship is to heavy";
+                throw new Exception("Ship is to heavy");
             }
 
             if (containers.Count > TotalSlots)
             {
-                return "Ship is too small";
+                throw new Exception("Ship is too small");
             }
 
             if (GetTotalWeight() > MaxWeight)
             {
-                return "Load is too heavy";
+                throw new Exception("Load is too heavy");
             }
 
             if (DistributeContainers())
@@ -85,7 +85,8 @@ namespace ContainerShipV2
                 }
                 else
                 {
-                    return "Ship is capsizing";
+
+                    throw new Exception("Ship is capsizing");
                 }
             }
 
@@ -97,10 +98,10 @@ namespace ContainerShipV2
         {
             int TotalWeight = GetTotalWeight();
 
-            if (TotalWeight >= MinWeight && TotalWeight <= MinWeight)
+            if (TotalWeight >= MinWeight)
             {
 
-                sortedContainers = containers.OrderByDescending(w => w.Weight).ToList();
+                sortedContainers = containers.OrderByDescending(w => w.containerType).ThenByDescending(t => t.Weight).ToList();
 
                 for (int i = 0; i < sortedContainers.Count; i++)
                 {
@@ -117,6 +118,10 @@ namespace ContainerShipV2
                 }
 
 
+            }
+            else
+            {
+                throw new Exception("Containers are too light");
             }
 
             return true;
@@ -257,47 +262,37 @@ namespace ContainerShipV2
             string weight = "";
             for (int z = 0; z < RowList.Count; z++)
             {
-
                 if (z > 0)
                 {
                     stack += '/';
                     weight += '/';
                 }
 
-
-                for (int y = 0; y < RowList.Count; y++)
+                for (int x = 0; x < RowList[z].stackList.Count; x++)
                 {
-                    for (int x = 0; x < RowList[z].stackList.Count; x++)
+                    if (x > 0)
                     {
-                        if (x > 0)
-                        {
-                            stack += ",";
-                            weight += ",";
-                        }
+                        stack += ",";
+                        weight += ",";
+                    }
 
-                        if (RowList[z].stackList[x].containers.Count > 0)
+                    if (RowList[z].stackList[x].containers.Count > 0)
+                    {
+                        for (int y = 0; y < RowList[z].stackList[x].containers.Count; y++)
                         {
-                            for (int k = 0; k < RowList[k].stackList[x].containers.Count; y++)
+                            Container container = RowList[z].stackList[x].containers[y];
+
+                            stack += Convert.ToString((int)container.containerType);
+                            weight += Convert.ToString(container.Weight);
+                            if (y < (RowList[z].stackList[x].containers.Count - 1))
                             {
-                                Container container = RowList[z].stackList[x].containers[y];
-
-                                stack += Convert.ToString((int)container.containerType);
-                                weight += Convert.ToString(container.Weight);
-                                if (y < (RowList[z].stackList[x].containers.Count - 1))
-                                {
-                                    weight += "-";
-                                }
+                                weight += "-";
                             }
-                        }
-                        else
-                        {
-                            stack += "empty";  
-                            weight += "0";     
                         }
                     }
                 }
-
             }
+
             Process.Start($"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + Length + "&width=" + Width + "&stacks=" + stack + "&weights=" + weight + "");
         }
     }
