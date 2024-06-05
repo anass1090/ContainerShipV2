@@ -29,7 +29,7 @@ namespace ContainerShipV2
             FormContainers.Add(new Container(11, 1));
             FormContainers.Add(new Container(11, 2));
 
-            foreach (var container in FormContainers)
+            foreach (Container container in FormContainers)
             {
                 ship.AddContainer(container);
             }

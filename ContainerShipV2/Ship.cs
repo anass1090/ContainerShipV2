@@ -81,7 +81,7 @@ namespace ContainerShipV2
             {
                 if (WeightDifference < 20)
                 {
-                    //start
+                    StartVisualizer();
                 }
                 else
                 {
@@ -251,5 +251,54 @@ namespace ContainerShipV2
 
         }
 
+        private void StartVisualizer()
+        {
+            string stack = "";
+            string weight = "";
+            for (int z = 0; z < RowList.Count; z++)
+            {
+
+                if (z > 0)
+                {
+                    stack += '/';
+                    weight += '/';
+                }
+
+
+                for (int y = 0; y < RowList.Count; y++)
+                {
+                    for (int x = 0; x < RowList[z].stackList.Count; x++)
+                    {
+                        if (x > 0)
+                        {
+                            stack += ",";
+                            weight += ",";
+                        }
+
+                        if (RowList[z].stackList[x].containers.Count > 0)
+                        {
+                            for (int k = 0; k < RowList[k].stackList[x].containers.Count; y++)
+                            {
+                                Container container = RowList[z].stackList[x].containers[y];
+
+                                stack += Convert.ToString((int)container.containerType);
+                                weight += Convert.ToString(container.Weight);
+                                if (y < (RowList[z].stackList[x].containers.Count - 1))
+                                {
+                                    weight += "-";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            stack += "empty";  
+                            weight += "0";     
+                        }
+                    }
+                }
+
+            }
+            Process.Start($"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + Length + "&width=" + Width + "&stacks=" + stack + "&weights=" + weight + "");
+        }
     }
 }

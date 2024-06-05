@@ -10,16 +10,7 @@ namespace ContainerShipV2
 {
     public class Row
     {
-        List<Stack> stackList = new List<Stack>();
-        public ReadOnlyCollection<Stack> stackListReadable
-        {
-            get { return stackList.AsReadOnly(); }
-        }
-
-        private IReadOnlyCollection<Stack> stacks
-        {
-            get { return stackList.AsReadOnly(); }
-        }
+        public List<Stack> stackList = new List<Stack>();
 
         public int Width { get; set; }
         public int MaxHeight { get; set; }

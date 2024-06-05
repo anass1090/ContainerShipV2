@@ -9,12 +9,8 @@ namespace ContainerShipV2
 {
     public class Stack
     {
-        List<Container> containers = new List<Container>();
+        public List<Container> containers = new List<Container>();
 
-        public ReadOnlyCollection<Container> ContainerListReadable
-        {
-            get { return containers.AsReadOnly(); }
-        }
         public int MaxWeight { get; set; } = 150;
         public int ContainersWeight { get; set; }
         public int Position { get; set; }
@@ -79,6 +75,7 @@ namespace ContainerShipV2
             return false;
         }
 
+        
 
         public void SetReserved()
         {
