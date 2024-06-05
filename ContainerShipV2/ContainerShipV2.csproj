@@ -58,6 +58,9 @@
     <Compile Include="Row.cs" />
     <Compile Include="Ship.cs" />
     <Compile Include="Stack.cs" />
+    <EmbeddedResource Include="ContainerShip.resx">
+      <DependentUpon>ContainerShip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

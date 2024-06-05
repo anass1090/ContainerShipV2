@@ -15,12 +15,21 @@ namespace ContainerShipV2
         public bool Coolable { get; private set; }
         public bool Valuable { get; private set; }
 
+        public ContainerTypes containerType { get; private set; }
 
-        public Container(int weight, bool valuable, bool coolable) 
+
+        public Container(int weight, int type) 
         {
             Weight = SetWeight(weight);
-            Valuable = valuable;
-            Coolable = coolable;
+            containerType = (ContainerTypes)type;
+        }
+
+        public enum ContainerTypes
+        {
+            Normal = 1,
+            Valuable = 2,
+            Coolable = 3,
+            CoolableValuable = 4
         }
 
         private int SetWeight(int weight)

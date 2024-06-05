@@ -28,13 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.buttonRun = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // buttonRun
+            // 
+            this.buttonRun.Location = new System.Drawing.Point(63, 150);
+            this.buttonRun.Name = "buttonRun";
+            this.buttonRun.Size = new System.Drawing.Size(128, 88);
+            this.buttonRun.TabIndex = 4;
+            this.buttonRun.Text = "Run";
+            this.buttonRun.UseVisualStyleBackColor = true;
+            this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
+            // 
+            // ContainerShip
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(267, 373);
+            this.Controls.Add(this.buttonRun);
+            this.Name = "ContainerShip";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+        private System.Windows.Forms.Button buttonRun;
     }
 }
 
