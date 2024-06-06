@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ContainerShipV2
 {
@@ -22,6 +23,8 @@ namespace ContainerShipV2
         {
             Weight = SetWeight(weight);
             containerType = (ContainerTypes)type;
+            Valuable = SetTypeValuable(containerType);
+            Coolable = SetTypeCoolable(containerType);
         }
 
         public enum ContainerTypes
@@ -32,11 +35,37 @@ namespace ContainerShipV2
             CoolableValuable = 4
         }
 
+        private bool SetTypeValuable(ContainerTypes type)
+        {
+            if (type == ContainerTypes.Valuable)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        private bool SetTypeCoolable(ContainerTypes type)
+        {
+            if (type == ContainerTypes.Coolable)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
         private int SetWeight(int weight)
         {
-            if (Weight < MinWeight)
+            if (weight < MinWeight)
             {
-                //throw new Exception("Weight is mininum is 4 tons");
+                throw new Exception("Weight is mininum is 4 tons");
             }
             else if (weight > MaxWeight)
             {

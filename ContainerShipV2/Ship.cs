@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContainerShipV2.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -41,6 +42,16 @@ namespace ContainerShipV2
             MinWeight = MaxWeight / 2;
         }
 
+        private void ResetData()
+        {
+            TotalWeight = 0;
+            WeightLeft = 0;
+            WeightRight = 0;
+            WeightCenter = 0;
+            WeightDifference = 0;
+            RowList = GetAllRowsInShip();
+        }
+
         public void AddContainer(Container container)
         {
             containers.Add(container);
@@ -58,23 +69,18 @@ namespace ContainerShipV2
             return TotalWeight;
         }
 
-        public string Run()
+        public void Run()
         {
-            TotalSlots = Length * Width * 29;
-
-            if (MaxWeight < TotalWeight)
-            {
-                throw new Exception("Ship is to heavy");
-            }
+            TotalSlots = Length * Width * 31;
 
             if (containers.Count > TotalSlots)
             {
-                throw new Exception("Ship is too small");
+                throw new ShipException("Ship is too small");
             }
 
             if (GetTotalWeight() > MaxWeight)
             {
-                throw new Exception("Load is too heavy");
+                throw new ShipException("Load is too heavy");
             }
 
             if (DistributeContainers())
@@ -86,26 +92,27 @@ namespace ContainerShipV2
                 else
                 {
 
-                    throw new Exception("Ship is capsizing");
+                    throw new ShipException("Ship is capsizing");
                 }
             }
 
-            return "Succes";
         }
 
 
         public bool DistributeContainers()
         {
+            ResetData();
             int TotalWeight = GetTotalWeight();
 
             if (TotalWeight >= MinWeight)
             {
 
-                sortedContainers = containers.OrderByDescending(w => w.containerType).ThenByDescending(t => t.Weight).ToList();
+                sortedContainers = containers.OrderByDescending(o => o.containerType).ThenBy(o => o.Weight).ToList();
+
 
                 for (int i = 0; i < sortedContainers.Count; i++)
                 {
-                    if (AddContainerLeftOrRight(sortedContainers[i], i))
+                    if (AddContainerLeftOrRight(sortedContainers[i], i))  
                     {
                         CheckNewShipWeightDifference();
                     }
@@ -121,7 +128,7 @@ namespace ContainerShipV2
             }
             else
             {
-                throw new Exception("Containers are too light");
+                throw new ContainerException("Containers are too light");
             }
 
             return true;
@@ -134,7 +141,8 @@ namespace ContainerShipV2
 
             for (int i = 0; i < RowList.Count; i++)
             {
-                if (WeightLeft <= WeightRight)
+
+                if (WeightLeft < WeightRight)
                 {
                     if ((int)RowList[i].side == 1)
                     {
@@ -198,7 +206,7 @@ namespace ContainerShipV2
         {
             List<Row> rows = new List<Row>();
 
-            if (Width % 2 == 0) //Is Even
+            if (Width % 2 == 0) //Is even
             {
                 double middle = Width / 2;
 

@@ -15,13 +15,15 @@ namespace ContainerShipV2
         public int ContainersWeight { get; set; }
         public int Position { get; set; }
         public bool IsFront { get; private set; }
+        public bool IsBack { get; private set; }
         public bool Reserved { get; set; }
         public bool StackIsFull { get; set; }
 
-        public Stack(int position, bool isfront)
+        public Stack(int position, bool isfront, bool isBack)
         {
             Position = position;
             IsFront = isfront;
+            IsBack = isBack;
         }
 
         public bool TryAddingContainer(Container container)

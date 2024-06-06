@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ContainerShipV2
 {
@@ -31,6 +32,8 @@ namespace ContainerShipV2
             Right = 3,
         }
 
+
+
         public bool TryAddingContainer(Container container)
         {
             for (int i = 0; i < stackList.Count; i++)
@@ -50,13 +53,13 @@ namespace ContainerShipV2
 
         }
 
-        public bool CheckIfContainerNeedsReservedSpace(Container container, int index)
+        private bool CheckIfContainerNeedsReservedSpace(Container container, int index)
         {
             if (container.Valuable)
             {
-                if (stackList[index].IsFront)
+                if (stackList[index].IsBack || stackList[index].IsFront)
                 {
-                    return true;
+                    return true;    
                 }
                 else if (!stackList[(index - 1)].Reserved && (index + 1) < (stackList.Count))
                 {
@@ -71,7 +74,6 @@ namespace ContainerShipV2
                 return false;
             }
         }
-
         private List<Stack> GetAllStackInRow()
         {
             List<Stack> stacks = new List<Stack>();
@@ -79,13 +81,19 @@ namespace ContainerShipV2
             for (int i = 0;i < Width;i++) 
             {
                 bool isFront = false;
+                bool isBack = false;
 
                 if (i == 0)
                 {
                     isFront = true;
                 }
 
-                stacks.Add(new Stack(i, isFront));
+                if ((i + 1) == Width)
+                {
+                    isBack = true;
+                }
+
+                stacks.Add(new Stack(i, isFront, isBack));
             }
 
             return stacks;
