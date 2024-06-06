@@ -72,6 +72,19 @@ namespace ContainerShipV2
         public void Run()
         {
             TotalSlots = Length * Width * 31;
+            int TotalWeightFirstRow = Width * 150;
+            int totalWeightCoolables = 0;
+            foreach (Container container in containers)
+            {
+                if ((int)container.containerType == 3 || (int)container.containerType == 4)
+                {
+                    totalWeightCoolables+= container.Weight;
+                }
+            }
+            if (TotalWeightFirstRow < totalWeightCoolables)
+            {
+                throw new ShipException("Too many coolables!!!!");
+            }
 
             if (containers.Count > TotalSlots)
             {
