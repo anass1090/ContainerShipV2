@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+﻿using System.Collections.Generic;
 
 namespace ContainerShipV2
 {
@@ -15,17 +8,17 @@ namespace ContainerShipV2
 
         public int Width { get; set; }
         public int MaxHeight { get; set; }
-        public Side side { get; set; }
+        public Sides Side { get; set; }
 
 
-        public Row(int width, int RowSide)
+        public Row(int width, Sides side)
         {
             Width = width;
             stackList = GetAllStackInRow();
-            side = (Side)RowSide;
+            Side = side;
         }
 
-        public enum Side
+        public enum Sides
         {
             Left = 1,
             Centre = 2,
@@ -36,9 +29,10 @@ namespace ContainerShipV2
         {
             for (int i = 0; i < stackList.Count; i++)
             {
-                if (stackList[i].TryAddingContainer(container))
+                Stack stack = stackList[i];
+                if (stack.TryAddingContainer(container))
                 {
-                    if (CheckIfContainerNeedsReservedSpace(container, i))
+                    if (CheckIfContainerNeedsReservedSpace(container, stack, i))
                     {
                         return true;
                     }
@@ -50,15 +44,15 @@ namespace ContainerShipV2
             return false;
         }
 
-        private bool CheckIfContainerNeedsReservedSpace(Container container, int index)
+        private bool CheckIfContainerNeedsReservedSpace(Container container, Stack stack, int index)
         {
-            if ((int)container.containerType == 2)
+            if (container.ContainerType == Container.ContainerTypes.Valuable || container.ContainerType == Container.ContainerTypes.CoolableValuable)
             {
-                if (stackList[index].IsBack || stackList[index].IsFront)
+                if (stack.IsBack || stack.IsFront)
                 {
                     return true;    
                 }
-                else if (!stackList[(index - 1)].Reserved && (index + 1) < (stackList.Count))
+                else if (index > 0 && !stackList[index - 1].Reserved && index + 1 < stackList.Count)
                 {
                     stackList[index + 1].Reserved = true;
                     return true;
@@ -71,6 +65,7 @@ namespace ContainerShipV2
                 return false;
             }
         }
+
         private List<Stack> GetAllStackInRow()
         {
             List<Stack> stacks = new List<Stack>();

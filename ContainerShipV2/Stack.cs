@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ContainerShipV2
 {
@@ -33,14 +28,14 @@ namespace ContainerShipV2
                 return false;
             }
 
-            if (container.Coolable && Position > 0)
+            if (container.ContainerType == Container.ContainerTypes.Coolable && Position > 0)
             {
                 return false;
             }
 
             if ((ContainersWeight + container.Weight) <= MaxWeight)
             {
-                if ((int)container.containerType == 2)
+                if (container.ContainerType == Container.ContainerTypes.Valuable)
                 {
                     if (containers.Count == 0)
                     {
@@ -48,7 +43,7 @@ namespace ContainerShipV2
                     }
                     else
                     {
-                        if (!containers[(containers.Count - 1)].Valuable)
+                        if ((containers[(containers.Count - 1)].ContainerType != Container.ContainerTypes.Valuable))
                         {
                             containers.Add(container);
                         }
@@ -75,13 +70,6 @@ namespace ContainerShipV2
             }
 
             return false;
-        }
-
-        
-
-        public void SetReserved()
-        {
-            Reserved = true;
         }
     }
 }
