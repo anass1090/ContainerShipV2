@@ -32,8 +32,6 @@ namespace ContainerShipV2
             Right = 3,
         }
 
-
-
         public bool TryAddingContainer(Container container)
         {
             for (int i = 0; i < stackList.Count; i++)
@@ -50,12 +48,11 @@ namespace ContainerShipV2
             }
 
             return false;
-
         }
 
         private bool CheckIfContainerNeedsReservedSpace(Container container, int index)
         {
-            if (container.Valuable)
+            if ((int)container.containerType == 2)
             {
                 if (stackList[index].IsBack || stackList[index].IsFront)
                 {
@@ -63,7 +60,7 @@ namespace ContainerShipV2
                 }
                 else if (!stackList[(index - 1)].Reserved && (index + 1) < (stackList.Count))
                 {
-                    stackList[index + 1].SetReserved();
+                    stackList[index + 1].Reserved = true;
                     return true;
                 }
 
@@ -78,7 +75,7 @@ namespace ContainerShipV2
         {
             List<Stack> stacks = new List<Stack>();
 
-            for (int i = 0;i < Width;i++) 
+            for (int i = 0; i < Width; i++) 
             {
                 bool isFront = false;
                 bool isBack = false;

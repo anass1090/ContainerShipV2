@@ -33,24 +33,34 @@ namespace ContainerShipV2
             FormContainers.Add(new Container(30, 1));
             FormContainers.Add(new Container(30, 2));
 
+            FormContainers.Add(new Container(30, 3));
             FormContainers.Add(new Container(30, 1));
             FormContainers.Add(new Container(30, 1));
             FormContainers.Add(new Container(30, 3));
             FormContainers.Add(new Container(30, 3));
             FormContainers.Add(new Container(30, 3));
             FormContainers.Add(new Container(30, 3));
-
             FormContainers.Add(new Container(30, 4));
-
-
-
             FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 3));
             FormContainers.Add(new Container(30, 2));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 3));
             FormContainers.Add(new Container(30, 2));
+            FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3)); FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3)); FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3)); FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3)); FormContainers.Add(new Container(30, 3)); FormContainers.Add(new Container(30, 3)); FormContainers.Add(new Container(30, 3));
 
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 2));
 
 
 

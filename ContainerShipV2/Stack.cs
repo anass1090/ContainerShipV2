@@ -40,7 +40,7 @@ namespace ContainerShipV2
 
             if ((ContainersWeight + container.Weight) <= MaxWeight)
             {
-                if (container.Valuable)
+                if ((int)container.containerType == 2)
                 {
                     if (containers.Count == 0)
                     {

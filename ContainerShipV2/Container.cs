@@ -74,10 +74,5 @@ namespace ContainerShipV2
 
             return weight;
         }
-
-        public string ReturnContainerInfoString()
-        {
-            return $"Weight: {Weight} Valuable: {Valuable} Coolable: {Coolable}"; ;
-        }
     }
 }
