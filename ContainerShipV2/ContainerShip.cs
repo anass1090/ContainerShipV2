@@ -22,7 +22,7 @@ namespace ContainerShipV2
 
         private void buttonRun_Click(object sender, EventArgs e)
         {
-            Ship ship = new Ship(2, 3);
+            Ship ship = new Ship(2, 4);
 
 
             FormContainers.Add(new Container(30, 1));
@@ -39,12 +39,8 @@ namespace ContainerShipV2
             FormContainers.Add(new Container(30, 3));
             FormContainers.Add(new Container(30, 3));
             FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
 
+            FormContainers.Add(new Container(30, 4));
 
 
 

@@ -37,7 +37,7 @@ namespace ContainerShipV2
 
         private bool SetTypeValuable(ContainerTypes type)
         {
-            if (type == ContainerTypes.Valuable)
+            if (type == ContainerTypes.Valuable || type == ContainerTypes.CoolableValuable)
             {
                 return true;
             }
@@ -50,7 +50,7 @@ namespace ContainerShipV2
 
         private bool SetTypeCoolable(ContainerTypes type)
         {
-            if (type == ContainerTypes.Coolable)
+            if (type == ContainerTypes.Coolable || type == ContainerTypes.CoolableValuable)
             {
                 return true;
             }

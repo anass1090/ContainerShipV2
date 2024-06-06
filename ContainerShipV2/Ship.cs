@@ -112,7 +112,7 @@ namespace ContainerShipV2
 
                 for (int i = 0; i < sortedContainers.Count; i++)
                 {
-                    if (AddContainerLeftOrRight(sortedContainers[i], i))  
+                    if (AddContainerLeftOrRight(sortedContainers[i], i))
                     {
                         CheckNewShipWeightDifference();
                     }
