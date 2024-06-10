@@ -30,7 +30,7 @@ namespace ContainerShipV2
         {
             if (weight < MinWeight)
             {
-                throw new Exception("Weight is mininum is 4 tons");
+                throw new Exception("Weight mininum is 4 tons");
             }
             else if (weight > MaxWeight)
             {

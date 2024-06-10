@@ -19,6 +19,7 @@ namespace ContainerShipV2
             ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(2, 3));
 
             FormContainers.Add(new Container(30, 4));
+            FormContainers.Add(new Container(4, 1));
             FormContainers.Add(new Container(30, 3));
             FormContainers.Add(new Container(30, 2));
             FormContainers.Add(new Container(30, 3));

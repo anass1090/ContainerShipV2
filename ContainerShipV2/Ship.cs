@@ -19,7 +19,6 @@ namespace ContainerShipV2
         public int TotalSlots { get; private set; }
 
         private int WeightLeft;
-        private int WeightCenter;
         private int WeightRight;
 
         private double WeightDifferencePercentage
@@ -51,7 +50,7 @@ namespace ContainerShipV2
             MinWeight = MaxWeight / 2;
             Containers = new List<Container>();
             sortedContainers = new List<Container>();
-            GetAllRowsInShip();
+            CalculateAllRows();
         }
 
         public void Run()
@@ -142,14 +141,13 @@ namespace ContainerShipV2
                 {
                     if (row.TryAddingContainer(container))
                     {
-                        WeightCenter += container.Weight;
                         return;
                     }
                 }
             }
         }
 
-        private void GetAllRowsInShip()
+        private void CalculateAllRows()
         {
             for (int i = 0; i < Width; i++)
             {
@@ -157,33 +155,50 @@ namespace ContainerShipV2
 
                 if (Width % 2 == 0)
                 {
-                    if (i < Width / 2)
-                    {
-                        side = Row.Sides.Left;
-                    }
-                    else
-                    {
-                        side = Row.Sides.Right;
-                    }
+                    side = CalculateEvenRows(i);
                 }
                 else
                 {
-                    if (i < Width / 2)
-                    {
-                        side = Row.Sides.Left;
-                    }
-                    else if (i > Width / 2)
-                    {
-                        side = Row.Sides.Right;
-                    }
-                    else
-                    {
-                        side = Row.Sides.Centre;
-                    }
+                    side = CalculateUnevenRows(i);
                 }
 
                 RowList.Add(new Row(Length, side));
             }
+        }
+
+        private Row.Sides CalculateEvenRows(int i)
+        {
+            Row.Sides side;
+            if (i < Width / 2)
+            {
+                side = Row.Sides.Left;
+            }
+            else
+            {
+                side = Row.Sides.Right;
+            }
+
+            return side;
+        }
+
+        private Row.Sides CalculateUnevenRows(int i)
+        {
+            Row.Sides side;
+
+            if (i < Width / 2)
+            {
+                side = Row.Sides.Left;
+            }
+            else if (i > Width / 2)
+            {
+                side = Row.Sides.Right;
+            }
+            else
+            {
+                side = Row.Sides.Centre;
+            }
+
+            return side;
         }
 
         private void StartVisualizer()
