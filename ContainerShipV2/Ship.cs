@@ -50,7 +50,7 @@ namespace ContainerShipV2
             MinWeight = MaxWeight / 2;
             Containers = new List<Container>();
             sortedContainers = new List<Container>();
-            CalculateAllRows();
+            CheckIfRowsAreEvenOrUneven();
         }
 
         public void Run()
@@ -84,7 +84,6 @@ namespace ContainerShipV2
             if (WeightDifferencePercentage > 20)
             {
                 throw new ShipException("Ship is capsizing");
-
             }
 
             if (DistributeContainers())
@@ -147,7 +146,7 @@ namespace ContainerShipV2
             }
         }
 
-        private void CalculateAllRows()
+        private void CheckIfRowsAreEvenOrUneven()
         {
             for (int i = 0; i < Width; i++)
             {
@@ -201,7 +200,7 @@ namespace ContainerShipV2
             return side;
         }
 
-        private void StartVisualizer()
+        public string StartVisualizer()
         {
             string stack = "";
             string weight = "";
@@ -239,6 +238,8 @@ namespace ContainerShipV2
             }
 
             Process.Start($"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + Length + "&width=" + Width + "&stacks=" + stack + "&weights=" + weight + "");
+            return $"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + Length + "&width=" + Width + "&stacks=" + stack + "&weights=" + weight + "";
         }
+
     }
 }

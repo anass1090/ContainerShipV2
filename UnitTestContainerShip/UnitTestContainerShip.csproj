@@ -51,8 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UnitTestRow.cs" />
+    <Compile Include="UnitTestShip.cs" />
     <Compile Include="UnitTestStack.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="UnitTestScenarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTestContainer.cs" />
   </ItemGroup>

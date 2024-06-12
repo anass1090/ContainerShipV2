@@ -15,14 +15,14 @@ namespace UnitTestContainerShip
         public void TryAddingContainer_ShouldReturnFalse_WhenStackIsReserved()
         {
             // Arrange
-            var stack = new Stack(0, false, false)
+            Stack stack = new Stack(0, false, false)
             {
                 Reserved = true
             };
-            var container = new Container(10, 1);
+            Container container = new Container(10, 1);
 
             // Act
-            var result = stack.TryAddingContainer(container);
+            bool result = stack.TryAddingContainer(container);
 
             // Assert
             Assert.IsFalse(result);
@@ -32,11 +32,11 @@ namespace UnitTestContainerShip
         public void TryAddingContainer_ShouldAddValuableContainer_WhenStackIsEmpty()
         {
             // Arrange
-            var stack = new Stack(0, false, false);
-            var container = new Container(10, 2);
+            Stack stack = new Stack(0, false, false);
+            Container container = new Container(10, 2);
 
             // Act
-            var result = stack.TryAddingContainer(container);
+            bool result = stack.TryAddingContainer(container);
 
             // Assert
             Assert.IsTrue(result);
@@ -48,11 +48,11 @@ namespace UnitTestContainerShip
         public void TryAddingContainer_ShouldReturnFalse_WhenCoolableContainerNotAtPosition0()
         {
             // Arrange
-            var stack = new Stack(1, false, false);
-            var container = new Container(10, 3);
+            Stack stack = new Stack(1, false, false);
+            Container container = new Container(10, 3);
 
             // Act
-            var result = stack.TryAddingContainer(container);
+            bool result = stack.TryAddingContainer(container);
 
             // Assert
             Assert.IsFalse(result);

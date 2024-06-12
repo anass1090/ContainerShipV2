@@ -16,30 +16,57 @@ namespace ContainerShipV2
 
         private void buttonRun_Click(object sender, EventArgs e)
         {
-            ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(2, 3));
+            ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(6, 3));
 
-            FormContainers.Add(new Container(30, 4));
-            FormContainers.Add(new Container(4, 1));
-            FormContainers.Add(new Container(30, 3));
             FormContainers.Add(new Container(30, 2));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 4));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
             FormContainers.Add(new Container(30, 2));
+            FormContainers.Add(new Container(30, 2));
+            FormContainers.Add(new Container(30, 2));
+            FormContainers.Add(new Container(30, 2));
+            FormContainers.Add(new Container(30, 2));
+
+            FormContainers.Add(new Container(30, 3));
+            FormContainers.Add(new Container(30, 3));
+
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+            FormContainers.Add(new Container(30, 1));
+
+
 
             foreach (Container container in FormContainers)
             {

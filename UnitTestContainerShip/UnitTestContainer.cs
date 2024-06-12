@@ -1,4 +1,5 @@
 ﻿using ContainerShipV2;
+using ContainerShipV2.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace UnitTestContainerShip
         public void Container_Constructor_ThrowsException_WhenWeightIsBelowMinimum()
         {
             // Act & Assert
-            Exception exception = Assert.ThrowsException<Exception>(() => new Container(2, 3));
+            ContainerException exception = Assert.ThrowsException<ContainerException>(() => new Container(2, 3));
 
             Assert.AreEqual("Weight mininum is 4 tons", exception.Message);
         }
@@ -31,7 +32,7 @@ namespace UnitTestContainerShip
         [TestMethod]
         public void Container_Constructor_WhenWeightIsAboveMaximum()
         {
-            Exception exception = Assert.ThrowsException<Exception>(() => new Container(34, 2));
+            ContainerException exception = Assert.ThrowsException<ContainerException>(() => new Container(34, 2));
 
             Assert.AreEqual("Weight maximun is 30 tons", exception.Message);
 
