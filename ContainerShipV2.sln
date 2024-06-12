@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainerShipV2", "ContainerShipV2\ContainerShipV2.csproj", "{66C557DD-A3BA-4D7C-AAB7-8DD0CDEA3051}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsContainerShip", "ContainerShipV2\WindowsFormsContainerShip.csproj", "{66C557DD-A3BA-4D7C-AAB7-8DD0CDEA3051}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestContainerShip", "UnitTestContainerShip\UnitTestContainerShip.csproj", "{8D70F439-B570-495D-BE91-0056E3FB1A12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryContainerShip", "ClassLibraryContainerShip\ClassLibraryContainerShip.csproj", "{DC94DC43-EE09-4DDA-9C26-5942A5B12093}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8D70F439-B570-495D-BE91-0056E3FB1A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D70F439-B570-495D-BE91-0056E3FB1A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D70F439-B570-495D-BE91-0056E3FB1A12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC94DC43-EE09-4DDA-9C26-5942A5B12093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC94DC43-EE09-4DDA-9C26-5942A5B12093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC94DC43-EE09-4DDA-9C26-5942A5B12093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC94DC43-EE09-4DDA-9C26-5942A5B12093}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

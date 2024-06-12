@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ContainerShipV2
+namespace ClassLibraryContainerShip
 {
     public class Stack
     {
@@ -11,7 +11,6 @@ namespace ContainerShipV2
         public bool IsFront { get; private set; }
         public bool IsBack { get; private set; }
         public bool Reserved { get; set; }
-        public bool StackIsFull { get; set; }
 
         private readonly int BaseMaxWeight = 120;
         public int MaxWeight
@@ -31,7 +30,7 @@ namespace ContainerShipV2
             get
             {
                 int totalWeight = 0;
-                foreach (var container in containers)
+                foreach (Container container in containers)
                 {
                     totalWeight += container.Weight;
                 }
@@ -48,8 +47,14 @@ namespace ContainerShipV2
 
         public bool TryAddingContainer(Container container)
         {
-            if (container.ContainerType == Container.ContainerTypes.Coolable && Position > 0 || Reserved)
+            if (Reserved)
             {
+                container.UnfitReason = Container.UnfitReasons.Reserved;
+                return false;
+            }
+            else if (container.ContainerType == Container.ContainerTypes.Coolable && Position > 0)
+            {
+                container.UnfitReason = Container.UnfitReasons.TooManyCoolables;
                 return false;
             }
 
@@ -63,6 +68,7 @@ namespace ContainerShipV2
                     }
                     else
                     {
+                        container.UnfitReason = Container.UnfitReasons.TooManyValuables;
                         return false;
                     }
                 }
@@ -71,15 +77,13 @@ namespace ContainerShipV2
                     containers.Insert(0, container);
                 }
 
-                if (ContainersWeight + container.Weight >= MaxWeight)
-                {
-                    StackIsFull = true;
-                }
-
                 return true;
             }
-
-            return false;
+            else
+            {
+                container.UnfitReason = Container.UnfitReasons.ExceedsMaxWeight;
+                return false;
+            }
         }
     }
 }

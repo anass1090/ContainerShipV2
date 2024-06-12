@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using ClassLibraryContainerShip;
 
 namespace ContainerShipV2
 {
     public partial class ContainerShip : Form
     {
-
-        List<Container> FormContainers = new List<Container>();
+        private readonly List<Container> FormContainers = new List<Container>();
 
         public ContainerShip()
         {
@@ -16,64 +16,23 @@ namespace ContainerShipV2
 
         private void buttonRun_Click(object sender, EventArgs e)
         {
-            ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(6, 3));
+            ContainerPlacer containerPlacer = new ContainerPlacer(new Ship((int)numLength.Value, (int)numWidth.Value));
 
-            FormContainers.Add(new Container(30, 2));
-            FormContainers.Add(new Container(30, 2));
-            FormContainers.Add(new Container(30, 2));
-            FormContainers.Add(new Container(30, 2));
-            FormContainers.Add(new Container(30, 2));
-            FormContainers.Add(new Container(30, 2));
-
-            FormContainers.Add(new Container(30, 3));
-            FormContainers.Add(new Container(30, 3));
-
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-            FormContainers.Add(new Container(30, 1));
-
-
-
+            for (int i = 0; i < 50; i++) FormContainers.Add(new Container(30, 3));
+            
             foreach (Container container in FormContainers)
             {
                 containerPlacer.Ship.Containers.Add(container);
             }
 
-            containerPlacer.Ship.Run();
+            containerPlacer.Run();
+
+            Console.WriteLine("Amount of unfit containers: " + containerPlacer.Ship.UnfitContainers.Count);
+
+            foreach (Container container in containerPlacer.Ship.UnfitContainers)
+            {
+                Console.WriteLine(container.UnfitReason.ToString());
+            }
         }
     }
 }

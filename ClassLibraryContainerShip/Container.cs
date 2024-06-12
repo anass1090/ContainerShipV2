@@ -1,17 +1,15 @@
-﻿using ContainerShipV2.Exceptions;
-using System;
+﻿using ClassLibraryContainerShip.Exceptions;
 
-
-namespace ContainerShipV2
+namespace ClassLibraryContainerShip
 {
     public class Container
     {
         public int Weight { get; private set; } 
-        private int MaxWeight = 30;
+        private readonly int MaxWeight = 30;
         public int MinWeight { get; private set; } = 4;
 
         public ContainerTypes ContainerType { get; private set; }
-
+        public UnfitReasons UnfitReason { get; set; }
 
         public Container(int weight, int type) 
         {
@@ -25,6 +23,15 @@ namespace ContainerShipV2
             Valuable = 2,
             Coolable = 3,
             CoolableValuable = 4
+        }
+
+        public enum UnfitReasons
+        {
+            ExceedsMaxWeight = 1,
+            Reserved = 2,
+            TooManyValuables = 3,
+            Other = 4,
+            TooManyCoolables = 5
         }
 
         private int SetWeight(int weight)
