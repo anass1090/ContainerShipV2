@@ -30,7 +30,7 @@ namespace ClassLibraryContainerShip
             ExceedsMaxWeight = 1,
             Reserved = 2,
             TooManyValuables = 3,
-            Other = 4,
+            TooManyCoolableValuables = 4,
             TooManyCoolables = 5
         }
 

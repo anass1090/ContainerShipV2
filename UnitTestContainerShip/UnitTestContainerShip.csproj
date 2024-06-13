@@ -61,9 +61,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ContainerShipV2\WindowsFormsContainerShip.csproj">
-      <Project>{66c557dd-a3ba-4d7c-aab7-8dd0cdea3051}</Project>
-      <Name>WindowsFormsContainerShip</Name>
+    <ProjectReference Include="..\ClassLibraryContainerShip\ClassLibraryContainerShip.csproj">
+      <Project>{dc94dc43-ee09-4dda-9c26-5942a5b12093}</Project>
+      <Name>ClassLibraryContainerShip</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

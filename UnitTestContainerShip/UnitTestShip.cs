@@ -1,5 +1,5 @@
-﻿using ContainerShipV2.Exceptions;
-using ContainerShipV2;
+﻿using ClassLibraryContainerShip.Exceptions;
+using ClassLibraryContainerShip;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace UnitTestContainerShip
                 containerPlacer.Ship.Containers.Add(container);
             }
 
-            Assert.ThrowsException<ShipException>(() => containerPlacer.Ship.Run());
+            Assert.ThrowsException<ShipException>(() => containerPlacer.Run());
 
         }
 
@@ -53,7 +53,7 @@ namespace UnitTestContainerShip
                 containerPlacer.Ship.Containers.Add(container);
             }
 
-            Assert.ThrowsException<ContainerException>(() => containerPlacer.Ship.Run());
+            Assert.ThrowsException<ContainerException>(() => containerPlacer.Run());
 
         }
 
@@ -76,7 +76,7 @@ namespace UnitTestContainerShip
                 containerPlacer.Ship.Containers.Add(container);
             }
 
-            Assert.ThrowsException<ShipException>(() => containerPlacer.Ship.Run());
+            Assert.ThrowsException<ShipException>(() => containerPlacer.Run());
         }
 
         [TestMethod]
@@ -94,7 +94,7 @@ namespace UnitTestContainerShip
                 containerPlacer.Ship.Containers.Add(container);
             }
 
-            Assert.IsTrue(containerPlacer.Ship.DistributeContainers());
+            Assert.IsTrue(containerPlacer.DistributeContainers());
         }
     }
 

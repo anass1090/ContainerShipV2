@@ -18,8 +18,10 @@ namespace ContainerShipV2
         {
             ContainerPlacer containerPlacer = new ContainerPlacer(new Ship((int)numLength.Value, (int)numWidth.Value));
 
-            for (int i = 0; i < 50; i++) FormContainers.Add(new Container(30, 3));
-            
+            for (int i = 0; i < 3; i++) FormContainers.Add(new Container(30, 4));
+            for (int i = 0; i < 7; i++) FormContainers.Add(new Container(30, 3));
+            for (int i = 0; i < 25; i++) FormContainers.Add(new Container(30, 1));
+
             foreach (Container container in FormContainers)
             {
                 containerPlacer.Ship.Containers.Add(container);

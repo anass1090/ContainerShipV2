@@ -56,13 +56,19 @@ namespace ClassLibraryContainerShip
             {
                 container.UnfitReason = Container.UnfitReasons.TooManyCoolables;
                 return false;
+            } else if(container.ContainerType == Container.ContainerTypes.CoolableValuable && Position > 0)
+            {
+                container.UnfitReason = Container.UnfitReasons.TooManyCoolableValuables;
+                return false;
             }
 
             if (ContainersWeight + container.Weight <= MaxWeight)
             {
                 if (container.ContainerType == Container.ContainerTypes.Valuable || container.ContainerType == Container.ContainerTypes.CoolableValuable)
                 {
-                    if (containers.Count == 0 || containers.LastOrDefault().ContainerType != Container.ContainerTypes.Valuable)
+                    if (containers.Count == 0 || 
+                        containers.LastOrDefault().ContainerType != Container.ContainerTypes.Valuable &&
+                        containers.LastOrDefault().ContainerType != Container.ContainerTypes.CoolableValuable)
                     {
                         containers.Add(container);
                     }

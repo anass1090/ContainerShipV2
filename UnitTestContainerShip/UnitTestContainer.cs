@@ -1,5 +1,5 @@
-﻿using ContainerShipV2;
-using ContainerShipV2.Exceptions;
+﻿using ClassLibraryContainerShip;
+using ClassLibraryContainerShip.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

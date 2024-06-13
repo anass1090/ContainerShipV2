@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ClassLibraryContainerShip
 {
@@ -14,27 +15,35 @@ namespace ClassLibraryContainerShip
             Ship = ship;
         }
 
-        public void Run()
+        public bool Run()
         {
-            if (Ship.TotalWeight < Ship.MinWeight)
-            {
-                throw new ContainerException("Containers are too light");
-            }
-
-            if (Ship.WeightDifferencePercentage > 20)
-            {
-                throw new ShipException("Ship is capsizing");
-            }
-
             if (DistributeContainers())
             {
+                if (Ship.TotalWeight < Ship.MinWeight)
+                {
+                    throw new ContainerException("Containers are too light");
+                }
+
+                if (Ship.WeightDifferencePercentage > 20)
+                { 
+                    throw new ShipException("Ship is capsizing");
+                }
+
                 StartVisualizer();
+
+                return true;
+            } else
+            {
+                return false;
             }
+
         }
 
-        private bool DistributeContainers()
+        public bool DistributeContainers()
         {
             Ship.Containers = Ship.Containers.OrderByDescending(o => o.ContainerType).ThenBy(o => o.Weight).ToList();
+
+            List<Container> containersToRemove = new List<Container>();
 
             foreach (Container container in Ship.Containers)
             {
@@ -43,8 +52,14 @@ namespace ClassLibraryContainerShip
                     if (!AddContainerCenter(container).Item1)
                     {
                         Ship.UnfitContainers.Add(AddContainerCenter(container).Item2);
+                        containersToRemove.Add(container);
                     }
                 }
+            }
+
+            foreach (Container container in containersToRemove)
+            {
+                Ship.Containers.Remove(container);
             }
 
             return true;

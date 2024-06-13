@@ -1,4 +1,4 @@
-﻿using ContainerShipV2;
+﻿using ClassLibraryContainerShip;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace UnitTestContainerShip
 
             // Assert
             Assert.IsTrue(result);
-            Assert.AreEqual(1, row.stackList[0].containers.Count);
+            Assert.AreEqual(1, row.StackList[0].containers.Count);
         }
 
     }
