@@ -16,14 +16,11 @@ namespace UnitTestContainerShip
         [TestMethod]
         public void TryAddingContainer_ShouldAddContainer_WhenRowIsEmpty()
         {
-            // Arrange
             Row row = new Row(3, Row.Sides.Left);
             Container container = new Container(10, 1);
 
-            // Act
             bool result = row.TryAddingContainer(container);
 
-            // Assert
             Assert.IsTrue(result);
             Assert.AreEqual(1, row.StackList[0].containers.Count);
         }

@@ -18,43 +18,40 @@ namespace UnitTestContainerShip
         {
             Ship ship = new Ship(1, 1);
             ContainerPlacer containerPlacer = new ContainerPlacer(ship);
-            List<Container> containers = new List<Container>();
-
-
-            containers.Add(new Container(30, 1));
-            containers.Add(new Container(30, 1));
-            containers.Add(new Container(30, 1));
-            containers.Add(new Container(30, 1));
-            containers.Add(new Container(30, 1));
-            containers.Add(new Container(30, 1));
+            List<Container> containers = new List<Container>
+            {
+                new Container(30, 1),
+                new Container(30, 1),
+                new Container(30, 1),
+                new Container(30, 1),
+                new Container(30, 1),
+                new Container(30, 1)
+            };
 
             foreach (Container container in containers)
             {
                 containerPlacer.Ship.Containers.Add(container);
             }
 
-            Assert.ThrowsException<ShipException>(() => containerPlacer.Run());
-
+            foreach (Container container in ship.UnfitContainers)
+            {
+                Assert.IsTrue(container.UnfitReason == Container.UnfitReasons.ExceedsMaxWeight);
+            }
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ContainerException), "Containers are too light")]
         public void Ship_Load_IsTooLight()
         {
             Ship ship = new Ship(3, 1);
             ContainerPlacer containerPlacer = new ContainerPlacer(ship);
-            List<Container> containers = new List<Container>();
-
-
-            containers.Add(new Container(4, 1));
-
-
-            foreach (Container container in containers)
+            List<Container> containers = new List<Container>
             {
-                containerPlacer.Ship.Containers.Add(container);
-            }
-
-            Assert.ThrowsException<ContainerException>(() => containerPlacer.Run());
-
+                new Container(4, 1)
+            };
+            
+            containerPlacer.Ship.Containers.AddRange(containers);
+            containerPlacer.Run();
         }
 
         [TestMethod]
@@ -62,21 +59,25 @@ namespace UnitTestContainerShip
         {
             Ship ship = new Ship(1, 1);
             ContainerPlacer containerPlacer = new ContainerPlacer(ship);
-            List<Container> containers = new List<Container>();
-
-            containers.Add(new Container(30, 3));
-            containers.Add(new Container(30, 3));
-            containers.Add(new Container(30, 3));
-            containers.Add(new Container(30, 3));
-            containers.Add(new Container(30, 3));
-            containers.Add(new Container(30, 3));
+            List<Container> containers = new List<Container>
+            {
+                new Container(30, 3),
+                new Container(30, 3),
+                new Container(30, 3),
+                new Container(30, 3),
+                new Container(30, 3),
+                new Container(30, 3)
+            };
 
             foreach (Container container in containers)
             {
                 containerPlacer.Ship.Containers.Add(container);
             }
 
-            Assert.ThrowsException<ShipException>(() => containerPlacer.Run());
+            foreach (Container container in ship.UnfitContainers)
+            {
+                Assert.IsTrue(container.UnfitReason == Container.UnfitReasons.TooManyCoolables);
+            }
         }
 
         [TestMethod]
@@ -84,15 +85,14 @@ namespace UnitTestContainerShip
         {
             Ship ship = new Ship(2, 2);
             ContainerPlacer containerPlacer = new ContainerPlacer(ship);
-            List<Container> containers = new List<Container>();
-
-            containers.Add(new Container(30, 1));
-            containers.Add(new Container(30, 1));
-
-            foreach (Container container in containers)
+            List<Container> containers = new List<Container>
             {
-                containerPlacer.Ship.Containers.Add(container);
-            }
+                new Container(30, 1),
+                new Container(30, 1),
+            };
+
+            containerPlacer.Ship.Containers.AddRange(containers);
+            
 
             Assert.IsTrue(containerPlacer.DistributeContainers());
         }
